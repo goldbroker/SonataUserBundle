@@ -12,6 +12,8 @@
 
 namespace Sonata\UserBundle\Form\Type;
 
+use Symfony\Component\Form\ChoiceList\Factory\DefaultChoiceListFactory;
+use Symfony\Component\Form\ChoiceList\Factory\PropertyAccessDecorator;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 use Symfony\Component\Form\FormBuilderInterface;
@@ -32,6 +34,8 @@ class SecurityRolesType extends ChoiceType
      */
     public function __construct(Pool $pool)
     {
+        parent::__construct(new PropertyAccessDecorator(new DefaultChoiceListFactory()));
+
         $this->pool = $pool;
     }
 
